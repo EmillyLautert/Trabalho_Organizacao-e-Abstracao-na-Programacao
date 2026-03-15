@@ -1,4 +1,5 @@
 class Cliente:
+     """Representa um cliente cadastrado no sistema."""
 
     def __init__(self, idCliente, nomeCliente):
         self.idCliente = idCliente

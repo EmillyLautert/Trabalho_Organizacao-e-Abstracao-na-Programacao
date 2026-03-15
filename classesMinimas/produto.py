@@ -1,4 +1,5 @@
 class Produto:
+     """Representa um produto disponível no estoque."""
 
     def __init__(self, idProduto, nomeProduto, quantidadeEstoque, precoProduto):
         self.idProduto = idProduto
