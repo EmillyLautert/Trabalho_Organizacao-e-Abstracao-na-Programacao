@@ -1,6 +1,15 @@
 from classesMinimas.cliente import Cliente
 from classesMinimas.produto import Produto
 from classesMinimas.venda import Venda
+import os
+
+def verificar_arquivos():
+    arquivos = ["clientes.csv", "produtos.csv", "vendas.csv"]
+
+    for arquivo in arquivos:
+        if not os.path.exists(arquivo):
+            with open(arquivo, "w", encoding="utf-8"):
+                pass
 
 def menu():
 
@@ -21,6 +30,12 @@ def menu():
         print("12 - Sair")
 
         opcao = input("Digite o número da consulta: ")
+
         if opcao == "12":
+            print("Encerrando o sistema...")
             break
-menu()
+
+
+if __name__ == "__main__":
+    verificar_arquivos()
+    menu()
