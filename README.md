@@ -7,7 +7,13 @@
 
 ## Descrição
 
-- descrição do sistema;
+## Descrição do Sistema
+
+O sistema consiste em uma aplicação desenvolvida em Python para gerenciamento de clientes, produtos e vendas. As informações do sistema são organizadas por meio das classes Cliente, Produto e Venda, responsáveis por representar as principais entidades utilizadas na aplicação.
+
+Para garantir a persistência das informações, foram estruturados arquivos de armazenamento em formato CSV, denominados clientes.csv, produtos.csv e vendas.csv. Esses arquivos permitem o registro e manutenção dos dados do sistema.
+
+
 - explicação das estruturas de dados utilizadas;
 - explicação da persistência automática em arquivos;
 - instruções de execução do projeto.
