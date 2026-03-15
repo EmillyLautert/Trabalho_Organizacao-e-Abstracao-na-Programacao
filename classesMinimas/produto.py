@@ -1,5 +1,5 @@
 class Produto:
-     """Representa um produto disponível no estoque."""
+    """Representa um produto disponível no estoque."""
 
     def __init__(self, idProduto, nomeProduto, quantidadeEstoque, precoProduto):
         self.idProduto = idProduto
@@ -11,4 +11,4 @@ class Produto:
         return f"ID: {self.idProduto}, Nome: {self.nomeProduto}, Quantidade: {self.quantidadeEstoque}, Preço: R${self.precoProduto:.2f}"
 
     def to_csv(self):
-        return f"{self.idProduto},{self.nomeProduto},{self.quantidadeEstoque},{self.precoProduto}"
+        return f"{self.idProduto},{self.nomeProduto},{self.quantidadeEstoque},{self.precoProduto}\n"
