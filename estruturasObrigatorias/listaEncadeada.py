@@ -1,31 +1,73 @@
-class No:
-    def __init__(self, dado):
-        self.dado = dado
+class Nodo:
+    def __init__(self, valor):
+        self.valor = valor
         self.proximo = None
 
 
 class ListaEncadeada:
     def __init__(self):
-        self.inicio = None
+        self.head = None
 
-    def adicionar(self, dado):
+    def inserir_fim(self, valor):
+        novo = Nodo(valor)
 
-        novo = No(dado)
+        if self.head is None:
+            self.head = novo
+            return
 
-        if self.inicio is None:
-            self.inicio = novo
-        else:
-            atual = self.inicio
+        atual = self.head
+        while atual.proximo is not None:
+            atual = atual.proximo
 
-            while atual.proximo:
-                atual = atual.proximo
-
-            atual.proximo = novo
+        atual.proximo = novo
 
     def listar(self):
+        elementos = []
+        atual = self.head
 
-        atual = self.inicio
-
-        while atual:
-            print(atual.dado)
+        while atual is not None:
+            elementos.append(atual.valor)
             atual = atual.proximo
+
+        return elementos
+
+    def buscar_por_id(self, id):
+        atual = self.head
+
+        while atual is not None:
+            if str(atual.valor.id) == str(id):
+                return atual.valor
+            atual = atual.proximo
+
+        return None
+
+    def buscar_por_nome(self, nome):
+        atual = self.head
+        nome = nome.lower()
+
+        while atual is not None:
+            if atual.valor.nome.lower() == nome:
+                return atual.valor
+            atual = atual.proximo
+
+        return None
+
+    def remover_por_id(self, id):
+        atual = self.head
+        anterior = None
+
+        while atual is not None:
+            if str(atual.valor.id) == str(id):
+                if anterior is None:
+                    self.head = atual.proximo
+                else:
+                    anterior.proximo = atual.proximo
+                return atual.valor
+
+            anterior = atual
+            atual = atual.proximo
+
+        return None
+
+    def esta_vazia(self):
+        return self.head is None
