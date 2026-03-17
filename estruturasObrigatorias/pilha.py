@@ -1,13 +1,22 @@
-class Operacoes:
+class Pilha:
     def __init__(self):
-        self.pilha = []
+        self.itens = []
 
-    def empilhar(self, operacao):
-        self.pilha.append(operacao)
+    def push(self, item):
+        self.itens.append(item)
 
-    def desempilhar(self):
-        if len(self.pilha) > 0:
-            return self.pilha.pop()
+    def pop(self):
+        if self.estaVazia():
+            return None
+        return self.itens.pop()
 
-    def vazia(self):
-        return len(self.pilha) == 0
+    def peek(self):
+        if self.estaVazia():
+            return None
+        return self.itens[-1]
+
+    def estaVazia(self):
+        return len(self.itens) == 0
+
+    def tamanho(self):
+        return len(self.itens)
