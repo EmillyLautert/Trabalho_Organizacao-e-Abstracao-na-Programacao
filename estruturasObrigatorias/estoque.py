@@ -51,3 +51,72 @@ class SistemaEstoque:
 
         for cliente in clientes:
             print(cliente)
+            
+    def cadastrarProduto(self):
+        print("\n===== CADASTRAR PRODUTO =====")
+        idProduto = input("Digite o ID do produto: ").strip()
+        nomeProduto = input("Digite o nome do produto: ").strip()
+
+        if idProduto == "" or nomeProduto == "":
+            print("Erro: ID e nome são obrigatórios.")
+            return
+
+        if self.listaProdutos.buscarProdutoPorId(idProduto) is not None:
+            print("Erro: o ID do produto já existe.")
+            return
+
+        if self.listaProdutos.buscarProdutoPorNome(nomeProduto) is not None:
+            print("Erro: o nome do produto já existe.")
+            return
+
+        try:
+            quantidadeEstoque = int(input("Digite a quantidade em estoque: "))
+            precoProduto = float(input("Digite o preço do produto: "))
+        except:
+            print("Erro: quantidade e preço devem ser numéricos.")
+            return
+
+        if quantidadeEstoque < 0:
+            print("Erro: a quantidade não pode ser negativa.")
+            return
+
+        if precoProduto <= 0:
+            print("Erro: o preço deve ser maior que zero.")
+            return
+
+        produto = Produto(idProduto, nomeProduto, quantidadeEstoque, precoProduto)
+        self.listaProdutos.inserirFim(produto)
+        salvarProdutos(self.listaProdutos)
+
+        self.historicoOperacoes.push(("cadastroProduto", produto.idProduto))
+        print("Produto cadastrado com sucesso.")
+
+    def listarProdutos(self):
+        print("\n===== LISTA DE PRODUTOS =====")
+        produtos = self.listaProdutos.listar()
+
+        if len(produtos) == 0:
+            print("Nenhum produto cadastrado.")
+            return
+
+        for produto in produtos:
+            print(produto)
+
+    def pesquisarProduto(self):
+        print("\n===== PESQUISAR PRODUTO =====")
+        opcao = input("Pesquisar por 1-ID ou 2-Nome? ").strip()
+
+        if opcao == "1":
+            idProduto = input("Digite o ID do produto: ").strip()
+            produto = self.listaProdutos.buscarProdutoPorId(idProduto)
+        elif opcao == "2":
+            nomeProduto = input("Digite o nome do produto: ").strip()
+            produto = self.listaProdutos.buscarProdutoPorNome(nomeProduto)
+        else:
+            print("Opção inválida.")
+            return
+
+        if produto is None:
+            print("Produto não encontrado.")
+        else:
+            print(produto)
