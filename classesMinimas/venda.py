@@ -1,5 +1,4 @@
 class Venda:
-    """Representa uma venda realizada no sistema."""
 
     def __init__(self, idVenda, cliente, produto, quantidade):
         self.idVenda = idVenda

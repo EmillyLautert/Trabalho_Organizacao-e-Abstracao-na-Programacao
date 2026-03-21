@@ -1,13 +1,25 @@
-class Vendas:
+class Fila:
     def __init__(self):
-        self.fila = []
+        self.itens = []
 
-    def enfileirar(self, venda):
-        self.fila.append(venda)
+    def enqueue(self, item):
+        self.itens.append(item)
 
-    def desenfileirar(self):
-        if len(self.fila) > 0:
-            return self.fila.pop(0)
+    def dequeue(self):
+        if self.estaVazia():
+            return None
+        return self.itens.pop(0)
+
+    def front(self):
+        if self.estaVazia():
+            return None
+        return self.itens[0]
 
     def listar(self):
-        return self.fila
+        return self.itens
+
+    def estaVazia(self):
+        return len(self.itens) == 0
+
+    def tamanho(self):
+        return len(self.itens)
