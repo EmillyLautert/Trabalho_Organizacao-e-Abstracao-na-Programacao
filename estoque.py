@@ -1,10 +1,10 @@
-from classesMinimas import Cliente
-from classesMinimas import Produto
-from classesMinimas import Venda
+from cliente import Cliente
+from produto import Produto
+from venda import Venda
 from listaEncadeada import ListaEncadeada
 from pilha import Pilha
 from fila import Fila
-from persistenciaAutomatica import (carregarClientes, salvarClientes, carregarProdutos, salvarProdutos, carregarVendas, salvarVendas)
+from persistencia import (carregarClientes, salvarClientes, carregarProdutos, salvarProdutos, carregarVendas, salvarVendas)
 
 class SistemaEstoque:
     def __init__(self):
@@ -123,6 +123,7 @@ class SistemaEstoque:
     
     def realizarVenda(self):
         print("\n===== REALIZAR VENDA =====")
+
         idVenda = input("Digite o ID da venda: ").strip()
         idCliente = input("Digite o ID do cliente: ").strip()
         idProduto = input("Digite o ID do produto: ").strip()
@@ -131,10 +132,9 @@ class SistemaEstoque:
             print("Erro: os IDs são obrigatórios.")
             return
 
-        vendas = self.filaVendas.listar()
-        for venda in vendas:
+        for venda in self.filaVendas.listar():
             if str(venda.idVenda) == str(idVenda):
-                print("Erro: o ID da venda já existe.")
+                print("Erro: já existe uma venda com esse ID.")
                 return
 
         cliente = self.listaClientes.buscarClientePorId(idCliente)
@@ -170,7 +170,10 @@ class SistemaEstoque:
         salvarProdutos(self.listaProdutos)
         salvarVendas(self.filaVendas)
 
-        self.historicoOperacoes.push(("venda", venda.idVenda, produto.idProduto, quantidadeAnterior))
+        self.historicoOperacoes.push(
+            ("venda", venda.idVenda, produto.idProduto, quantidadeAnterior)
+    )
+
         print("Venda realizada com sucesso.")
 
     def visualizarFilaVendas(self):
