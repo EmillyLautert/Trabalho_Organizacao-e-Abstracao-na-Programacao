@@ -16,35 +16,24 @@ Para garantir a persistência das informações, foram estruturados arquivos de 
 O sistema utiliza três estruturas de dados fundamentais estudadas na disciplina:
 
 - Lista Encadeada
-A lista encadeada é utilizada para armazenar os clientes e produtos.
-Cada elemento da lista é representado por um nodo, que contém um valor e uma referência para o próximo elemento.
-Essa estrutura permite:
+A lista encadeada é utilizada para armazenar os clientes e produtos. Cada elemento da lista é representado por um nodo, que contém um valor e uma referência para o próximo elemento. Essa estrutura permite:
 Inserção dinâmica de novos elementos;
 Percorrer os dados sequencialmente;
 Realizar buscas por ID ou nome.
 
 - Fila
-A fila é utilizada para armazenar as vendas realizadas.
-Ela segue o princípio FIFO (First In, First Out), ou seja, o primeiro elemento inserido é o primeiro a ser processado.
-No sistema:
+A fila é utilizada para armazenar as vendas realizadas. Ela segue o princípio FIFO (First In, First Out), ou seja, o primeiro elemento inserido é o primeiro a ser processado. No sistema:
 Cada nova venda é adicionada ao final da fila;
 A ordem das vendas é preservada.
 
 - Pilha (Stack)
-A pilha é utilizada para armazenar o histórico de operações, permitindo desfazer ações realizadas pelo usuário.
-Ela segue o princípio LIFO (Last In, First Out), ou seja:
-A última operação realizada é a primeira a ser desfeita
-Essa estrutura é utilizada para:
+A pilha é utilizada para armazenar o histórico de operações, permitindo desfazer ações realizadas pelo usuário. Ela segue o princípio LIFO (Last In, First Out), ou seja, a última operação realizada é a primeira a ser desfeita. Essa estrutura é utilizada para:
 Desfazer cadastro de clientes;
 Desfazer cadastro de produtos;
 Desfazer vendas.
 
 - Persistência Automática em Arquivos
-O sistema realiza a persistência dos dados por meio de arquivos no formato CSV:
-clientes.csv
-produtos.csv
-vendas.csv
-Funcionamento:
+O sistema realiza a persistência dos dados por meio de arquivos no formato CSV: clientes.csv, produtos.csv, vendas.csv. Funcionamento:
 Ao iniciar o sistema, os dados são carregados automaticamente dos arquivos;
 Sempre que ocorre uma alteração (cadastro ou venda), os dados são salvos automaticamente;
 Caso os arquivos não existam, o sistema os cria automaticamente;
