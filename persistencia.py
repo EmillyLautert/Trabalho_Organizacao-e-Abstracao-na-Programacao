@@ -1,4 +1,10 @@
 import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CLIENTES_CSV = os.path.join(BASE_DIR, "clientes.csv")
+PRODUTOS_CSV = os.path.join(BASE_DIR, "produtos.csv")
+VENDAS_CSV = os.path.join(BASE_DIR, "vendas.csv")
+
 from cliente import Cliente
 from produto import Produto
 from venda import Venda
@@ -10,10 +16,10 @@ def garantirArquivo(nomeArquivo):
 
 
 def carregarClientes(listaClientes):
-    garantirArquivo("clientes.csv")
+    garantirArquivo(CLIENTES_CSV)
 
     try:
-        with open("clientes.csv", "r", encoding="utf-8") as arquivo:
+        with open(CLIENTES_CSV, "r", encoding="utf-8") as arquivo:
             for linha in arquivo:
                 linha = linha.strip()
 
@@ -37,7 +43,7 @@ def carregarClientes(listaClientes):
 
 def salvarClientes(listaClientes):
     try:
-        with open("clientes.csv", "w", encoding="utf-8") as arquivo:
+        with open(CLIENTES_CSV, "w", encoding="utf-8") as arquivo:
             for cliente in listaClientes.listar():
                 arquivo.write(cliente.to_csv())
     except:
@@ -45,10 +51,10 @@ def salvarClientes(listaClientes):
 
 
 def carregarProdutos(listaProdutos):
-    garantirArquivo("produtos.csv")
+    garantirArquivo(PRODUTOS_CSV)
 
     try:
-        with open("produtos.csv", "r", encoding="utf-8") as arquivo:
+        with open(PRODUTOS_CSV, "r", encoding="utf-8") as arquivo:
             for linha in arquivo:
                 linha = linha.strip()
 
@@ -78,17 +84,17 @@ def carregarProdutos(listaProdutos):
 
 def salvarProdutos(listaProdutos):
     try:
-        with open("produtos.csv", "w", encoding="utf-8") as arquivo:
+        with open(PRODUTOS_CSV, "w", encoding="utf-8") as arquivo:
             for produto in listaProdutos.listar():
                 arquivo.write(produto.to_csv())
     except:
         print("Erro ao salvar produtos.")
 
 def carregarVendas(filaVendas, listaClientes, listaProdutos):
-    garantirArquivo("vendas.csv")
+    garantirArquivo(VENDAS_CSV)
 
     try:
-        with open("vendas.csv", "r", encoding="utf-8") as arquivo:
+        with open(VENDAS_CSV, "r", encoding="utf-8") as arquivo:
             for linha in arquivo:
                 linha = linha.strip()
 
@@ -121,7 +127,7 @@ def carregarVendas(filaVendas, listaClientes, listaProdutos):
 
 def salvarVendas(filaVendas):
     try:
-        with open("vendas.csv", "w", encoding="utf-8") as arquivo:
+        with open(VENDAS_CSV, "w", encoding="utf-8") as arquivo:
             for venda in filaVendas.listar():
                 arquivo.write(venda.to_csv())
     except:
