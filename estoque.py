@@ -71,7 +71,9 @@ class SistemaEstoque:
 
         try:
             quantidadeEstoque = int(input("Digite a quantidade em estoque: "))
-            precoProduto = float(input("Digite o preço do produto: "))
+            preco_input = input("Digite o preço do produto: ").strip()
+            preco_formatado = preco_input.replace('.', '').replace(',', '.')
+            precoProduto = float(preco_formatado)
         except:
             print("Erro: quantidade e preço devem ser numéricos.")
             return
